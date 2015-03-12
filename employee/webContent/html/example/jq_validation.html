@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Jquery Validation</title>
+        <script type="text/javascript" src="../../js/jQuery/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" src="../../js/jQuery/jquery.validate.js"></script>
+        <script type="text/javascript" src="../../js/jQuery/additional-methods.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#form_validation").validate({
+                    rules:{
+                        username:{
+                            required:true,
+                            regex:"^[a-zA-Z0-9_]+$" //Only Apha-Numeric
+                        },
+                        password:{
+                            required:true
+                        },
+                        confirm_password:{
+                            equalTo:"#password"
+                        },
+                        email:{
+                            email:true,
+                            required:true
+                        }
+                    },
+                    messages:{
+                        username:{
+                            required:"The Username field is required"
+                        },
+                        password:{
+                            required:"The Password field is required"
+                        },
+                        confirm_password:{
+                            equalTo:"The Confirm Password field does not match the Password field"
+                        },
+                        email:{
+                            email:"The Email field must contain a valid email address",
+                            required:"The Email field is required"
+                        }
+                    },
+                    submitHandler:function(){
+                        alert("Is OK");
+                        form.submit();
+                    }
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <fieldset>
+            <legend>Register</legend>
+            <form id="form_validation" name="form_validation" action="/controller">
+                <div>
+                    <label>Username:</label>
+                    <input type="text" id="username" name="username" />
+                </div>
+                <div>
+                    <label>Password:</label>
+                    <input type="text" id="password" name="password" />
+                </div>
+                <div>
+                    <label>Confirm Password:</label>
+                    <input type="text" id="confirm_password" name="confirm_password" />
+                </div>
+                <div>
+                    <label class="campo">Email:</label>
+                    <input type="text" id="email" name="email" />
+                </div>
+                <input type="submit" value="Register" />
+            </form>
+        </fieldset>
+    </body>
+</html>
